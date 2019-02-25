@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Translator</title>
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&amp;subset=cyrillic" rel="stylesheet">
+	<link rel="stylesheet" href="translator.css">
+</head>
+<body>
+	<h1 class="translator__h1">Переводчик</h1>
+	<form action="" class="translator__form">
+		<div class="translator__workspace">
+			<div class="translator__textarea-block" tabindex="1">
+				<textarea name="text" id="input-text" class="translator__textarea-block_textarea">Apple</textarea>
+				<div class="translator__textarea-block_symbol-counter">0/5000</div>
+				<div class="translator__textarea-block_delete hide"></div>
+			</div>
+			<div class="translator__result-block">
+				<div id="result-text" class="translator__result-block_result">Яблоко</div>
+			</div>
+		</div>
+		<div class="translator__controls">
+			<span class="translator__controls_lang translator__controls_left-lang">английский</span>
+			<button id="change-lang" class="translator__controls_arrows"><span class="controls__arrows_img"></span></button>
+			<span class="translator__controls_lang translator__controls_right-lang">русский</span>
+			<button id="translate" type="submit" class="translator__controls_translate">Перевести</button>
+		</div>
+	</form>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="translator.js"></script>
+	<script>
+		var translator = new Translator({
+			elem: document.querySelector('.translator__form'),
+			maxLength: 5000
+		})
+	</script>
+</body>
+</html>
