@@ -1,3 +1,4 @@
-import Normalize from './Normalize'
+import { Normalize } from './Normalize'
+import { TranslatorContext } from './Context'
 
-export { Normalize }
+export { Normalize, TranslatorContext }

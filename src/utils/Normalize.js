@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components/macro'
+import { createGlobalStyle } from 'styled-components'
 
 const Normalize = createGlobalStyle`
 ::-webkit-scrollbar-button {
@@ -223,4 +223,4 @@ const Normalize = createGlobalStyle`
   }
 `
 
-export default Normalize
+export { Normalize }
