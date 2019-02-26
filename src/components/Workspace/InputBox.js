@@ -1,6 +1,58 @@
-import React from 'react'
-import styled from 'styled-components/macro'
-import { ClearInput, ClearInputIcon } from './ClearInput'
+import React, { Component } from 'react'
+import styled from 'styled-components'
+import { ClearInput } from './ClearInput'
+import { ClearInputIcon } from '../assets'
+
+class InputBox extends Component {
+  state = {
+    textAreaValue: '',
+    symbolsCount: 0,
+    maxSymbolsCount: 100,
+  }
+
+  resetTextArea = () => {
+    this.setState(() => {
+      return {
+        textAreaValue: '',
+        symbolsCount: 0,
+      }
+    })
+  }
+
+  onTextAreaInput = event => {
+    console.log('changed')
+    const { maxSymbolsCount } = this.state
+    const textAreaValue = event.target.value
+    const symbolsCount = textAreaValue.length
+
+    if (symbolsCount > maxSymbolsCount) {
+      return false
+    }
+
+    this.setState(() => {
+      return {
+        textAreaValue,
+        symbolsCount,
+      }
+    })
+  }
+
+  render() {
+    const { symbolsCount, maxSymbolsCount, textAreaValue } = this.state
+
+    return (
+      <InputBoxContainer>
+        <Textarea onChange={this.onTextAreaInput} value={textAreaValue} />
+        <SymbolCounter>
+          {symbolsCount}/{maxSymbolsCount}
+        </SymbolCounter>
+        <ClearInput onClick={this.resetTextArea}>
+          <ClearInputIcon />
+        </ClearInput>
+      </InputBoxContainer>
+    )
+  }
+}
 
 const InputBoxContainer = styled.div`
   width: 100%;
@@ -41,16 +93,4 @@ const SymbolCounter = styled.span`
   font-family: 'PT Sans', sans-serif;
 `
 
-const InputBox = () => {
-  return (
-    <InputBoxContainer>
-      <Textarea />
-      <SymbolCounter>0/5000</SymbolCounter>
-      <ClearInput>
-        <ClearInputIcon />
-      </ClearInput>
-    </InputBoxContainer>
-  )
-}
-
-export default InputBox
+export { InputBox }
