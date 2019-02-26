@@ -1,22 +1,42 @@
 import React, { Component } from 'react'
-import { Normalize } from '../utils'
+
+import { Normalize, TranslatorContext } from '../utils'
 import { Heading, Wrapper } from './partials'
-import Workspace from './Workspace'
-import Controls from './Controls'
+import { Workspace } from './Workspace'
+import { Controls } from './Controls'
 
 class App extends Component {
   state = {
-    test: 'test',
+    langFrom: 'английский',
+    langTo: 'русский',
+  }
+
+  swapLangs = () => {
+    const { langFrom, langTo } = this.state
+
+    this.setState({
+      langFrom: langTo,
+      langTo: langFrom,
+    })
   }
 
   render() {
     return (
-      <Wrapper>
-        <Normalize />
-        <Heading>Переводчик</Heading>
-        <Workspace />
-        <Controls />
-      </Wrapper>
+      <TranslatorContext.Provider
+        value={{
+          state: this.state,
+          actions: {
+            swapLangs: this.swapLangs,
+          },
+        }}
+      >
+        <Wrapper>
+          <Normalize />
+          <Heading>Переводчик</Heading>
+          <Workspace />
+          <Controls />
+        </Wrapper>
+      </TranslatorContext.Provider>
     )
   }
 }
