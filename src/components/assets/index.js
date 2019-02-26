@@ -1,3 +1,4 @@
 import { LangSwitcherIcon } from './LangSwitcherIcon'
+import { ClearInputIcon } from './ClearInputIcon'
 
-export { LangSwitcherIcon }
+export { LangSwitcherIcon, ClearInputIcon }
