@@ -1,5 +1,13 @@
 import React from 'react'
-import styled from 'styled-components/macro'
+import styled from 'styled-components'
+
+const ResultBox = props => {
+  return (
+    <ResultBoxContainer>
+      <ResultBoxText>{props.content || 'Waiting for content'}</ResultBoxText>
+    </ResultBoxContainer>
+  )
+}
 
 const ResultBoxContainer = styled.div`
   height: 100%;
@@ -21,12 +29,4 @@ const ResultBoxText = styled.div`
   overflow: auto;
 `
 
-const ResultBox = props => {
-  return (
-    <ResultBoxContainer>
-      <ResultBoxText>{props.content || 'Waiting for content'}</ResultBoxText>
-    </ResultBoxContainer>
-  )
-}
-
-export default ResultBox
+export { ResultBox }
