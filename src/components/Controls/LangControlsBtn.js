@@ -1,21 +1,16 @@
-import styled from 'styled-components/macro'
-import { ButtonStyling } from '../partials'
+import styled from 'styled-components'
+import { Button } from '../partials'
 
-const LangControlsBtn = styled(ButtonStyling)`
+const LangControlsBtn = styled(Button)`
+  min-width: 120px;
   border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #000;
+  text-transform: none;
   background-color: transparent;
 
-  span {
-    color: #000;
-    text-transform: none;
-  }
-
   &:hover {
+    color: #fff;
     background-color: #282e54;
-
-    span {
-      color: #fff;
-    }
   }
 `
 

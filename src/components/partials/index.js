@@ -1,5 +1,5 @@
 import { Wrapper, FlexWrapper } from './Wrappers'
-import Heading from './Heading'
-import { Button, ButtonStyling } from './Button'
+import { Heading } from './Heading'
+import { Button } from './Button'
 
-export { Wrapper, FlexWrapper, Heading, Button, ButtonStyling }
+export { Wrapper, FlexWrapper, Heading, Button }

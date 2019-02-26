@@ -1,7 +1,6 @@
-import React from 'react'
-import styled from 'styled-components/macro'
+import styled from 'styled-components'
 
-const ButtonStyling = styled.button`
+const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,35 +9,21 @@ const ButtonStyling = styled.button`
   margin: 0;
   border: 1px solid #f2392a;
   padding: ${props => (props.noPadding ? `0` : `0 20px`)};
+  color: #fff;
+  font-size: 12px;
+  font-family: 'PT Sans', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  white-space: nowrap;
   background-color: #f2392a;
   transition: ease 0.5s;
   cursor: pointer;
   outline: none;
 
-  span {
-    color: #fff;
-    font-size: 12px;
-    font-family: 'PT Sans', sans-serif;
-    font-weight: bold;
-    text-transform: uppercase;
-    white-space: nowrap;
-  }
-
   &:hover {
+    color: #f2392a;
     background-color: #fff;
-
-    span {
-      color: #f2392a;
-    }
   }
 `
 
-const Button = ({ children }) => {
-  return (
-    <ButtonStyling>
-      <span>{children}</span>
-    </ButtonStyling>
-  )
-}
-
-export { ButtonStyling, Button }
+export { Button }

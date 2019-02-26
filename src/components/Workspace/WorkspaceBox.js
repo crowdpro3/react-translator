@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro'
+import styled from 'styled-components'
 
 const WorkspaceBox = styled.article`
   position: relative;
@@ -7,4 +7,4 @@ const WorkspaceBox = styled.article`
   height: 130px;
 `
 
-export default WorkspaceBox
+export { WorkspaceBox }

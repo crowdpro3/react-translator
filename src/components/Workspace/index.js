@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { FlexWrapper } from '../partials'
-import WorkspaceBox from './WorkspaceBox'
-import InputBox from './InputBox'
-import ResultBox from './ResultBox'
+import { WorkspaceBox } from './WorkspaceBox'
+import { InputBox } from './InputBox'
+import { ResultBox } from './ResultBox'
 
-export default class Workspace extends Component {
+class Workspace extends Component {
   render() {
     return (
       <FlexWrapper as="section">
@@ -18,3 +18,5 @@ export default class Workspace extends Component {
     )
   }
 }
+
+export { Workspace }
