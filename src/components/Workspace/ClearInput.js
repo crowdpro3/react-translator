@@ -12,14 +12,19 @@ const ClearInput = styled.button`
   margin: 0;
   border: none;
   padding: 0;
-  opacity: 0.55;
+  opacity: ${props => (props.visible ? `0.55` : `0`)};
+  visibility: ${props => (props.visible ? `visible` : `hidden`)};
   background-color: transparent;
   box-shadow: none;
-  cursor: pointer;
 
   svg {
     width: 9px;
     height: 9px;
+  }
+
+  &:hover {
+    cursor: pointer;
+    opacity: 1;
   }
 `
 
