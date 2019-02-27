@@ -1,55 +1,45 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import { TranslatorContext } from '../../utils'
 import { ClearInput } from './ClearInput'
 import { ClearInputIcon } from '../assets'
 
 class InputBox extends Component {
   state = {
-    textAreaValue: '',
-    symbolsCount: 0,
-    maxSymbolsCount: 100,
+    isFocused: false,
   }
 
-  resetTextArea = () => {
+  focusHandler = isFocused => {
     this.setState(() => {
       return {
-        textAreaValue: '',
-        symbolsCount: 0,
-      }
-    })
-  }
-
-  onTextAreaInput = event => {
-    console.log('changed')
-    const { maxSymbolsCount } = this.state
-    const textAreaValue = event.target.value
-    const symbolsCount = textAreaValue.length
-
-    if (symbolsCount > maxSymbolsCount) {
-      return false
-    }
-
-    this.setState(() => {
-      return {
-        textAreaValue,
-        symbolsCount,
+        isFocused,
       }
     })
   }
 
   render() {
-    const { symbolsCount, maxSymbolsCount, textAreaValue } = this.state
-
     return (
-      <InputBoxContainer>
-        <Textarea onChange={this.onTextAreaInput} value={textAreaValue} />
-        <SymbolCounter>
-          {symbolsCount}/{maxSymbolsCount}
-        </SymbolCounter>
-        <ClearInput onClick={this.resetTextArea}>
-          <ClearInputIcon />
-        </ClearInput>
-      </InputBoxContainer>
+      <TranslatorContext.Consumer>
+        {({ state, actions }) => (
+          <InputBoxContainer focused={this.state.isFocused}>
+            <Textarea
+              onChange={actions.onTextAreaInput}
+              onFocus={() => this.focusHandler(true)}
+              onBlur={() => this.focusHandler(false)}
+              value={state.textAreaValue}
+            />
+            <SymbolCounter>
+              {state.symbolsCount}/{state.maxSymbolsCount}
+            </SymbolCounter>
+            <ClearInput
+              onClick={actions.resetTextArea}
+              visible={!state.isEmpty}
+            >
+              <ClearInputIcon />
+            </ClearInput>
+          </InputBoxContainer>
+        )}
+      </TranslatorContext.Consumer>
     )
   }
 }
@@ -62,6 +52,7 @@ const InputBoxContainer = styled.div`
   padding-top: 4px;
   padding-right: 4px;
   transition: box-shadow 0.25s;
+  outline: ${props => (props.focused ? `1px solid #4d90fe` : `none`)};
 `
 
 const Textarea = styled.textarea`
@@ -78,8 +69,6 @@ const Textarea = styled.textarea`
   background-color: rgba(255, 255, 255, 0);
   outline: none;
   resize: none;
-  /* overflow-y: auto;
-    overflow-x: auto; */
 `
 
 const SymbolCounter = styled.span`
